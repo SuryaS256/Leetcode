@@ -1,0 +1,41 @@
+class Solution 
+{
+    public int maxSubarraySumCircular(int[] nums) 
+    {
+        int n=nums.length;
+        int res1=linear(nums,n);
+        if(res1<0)
+        {
+            return res1;
+        }
+        int res2=circular(nums,n);
+        return Math.max(res1,res2);
+    }
+    public int linear(int[] nums,int n)
+    {
+        int max1=nums[0];
+        int res=nums[0];
+        for(int i=1;i<n;i++)
+        {
+            max1=Math.max(max1+nums[i],nums[i]);
+            res=Math.max(res,max1);
+        }
+        return res;
+    }
+    public int circular(int[] nums,int n)
+    {
+        int max1=nums[0];
+        int res=nums[0];
+        int sum=0;
+        for(int i=1;i<n;i++)
+        {
+            max1=Math.min(max1+nums[i],nums[i]);
+            res=Math.min(res,max1);
+        }
+        for(int i=0;i<n;i++)
+        {
+            sum+=nums[i];
+        }
+        return sum-res;
+    }
+}
