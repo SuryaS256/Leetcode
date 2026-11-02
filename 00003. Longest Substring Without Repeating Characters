@@ -1,0 +1,23 @@
+class Solution 
+{
+    public int lengthOfLongestSubstring(String s) 
+    {
+        int left=0;
+        int n=s.length();
+        HashSet<Character> h=new HashSet<>();
+        int res=0;
+        for(int right=0;right<n;right++)
+        {
+            char ch=s.charAt(right);
+            while(left<=right && h.contains(ch))
+            {
+                char ch1=s.charAt(left);
+                h.remove(ch1);
+                left++;
+            }
+            h.add(ch);
+            res=Math.max(res,right-left+1);
+        }
+        return res;
+    }
+}
