@@ -1,0 +1,24 @@
+class Solution 
+{
+    public boolean isAnagram(String s, String t) 
+    {
+        int[] res=new int[256];
+        int n1 = s.length();
+        int n2 = t.length();
+        if(n1!=n2)
+            return false;
+        for(int i=0;i<n1;i++)
+        {
+            char ch1=s.charAt(i);
+            char ch2=t.charAt(i);
+            res[ch1]++;
+            res[ch2]--;
+        }
+        for(int i=0;i<256;i++)
+        {
+            if(res[i]!=0)
+                return false;
+        }
+        return true;
+    }
+}
